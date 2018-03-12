@@ -19,38 +19,62 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <SplitPane dividerPositions="0.7268170426065163" prefHeight="700.0" prefWidth="800.0">
+      <SplitPane dividerPositions="0.744988864142539" prefHeight="800.0" prefWidth="900.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: black;" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: black;">
+               <children>
+                  <GridPane layoutY="3.0" prefHeight="792.0" prefWidth="666.0" style="-fx-background-color: gray;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="81.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="72.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="64.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="55.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="63.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="87.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="222.0" style="-fx-background-color: black;">
                <children>
-                  <Button layoutX="12.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="191.0" text="Start" />
-                  <Label layoutX="14.0" layoutY="68.0" text="Score" textFill="WHITE">
+                  <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="191.0" text="Start" />
+                  <Label layoutX="89.0" layoutY="97.0" text="Score" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="114.0" text="0" textFill="WHITE">
+                  <Label layoutX="112.0" layoutY="184.0" text="0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="12.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="23.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../signature-mail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="45.0" layoutY="565.0" text="Alexandre CLAVEAU" textFill="WHITE">
+                  <Label layoutX="52.0" layoutY="558.0" text="Alexandre CLAVEAU" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="77.0" layoutY="602.0" text="ElementZ" textFill="WHITE">
+                  <Label layoutX="88.0" layoutY="598.0" text="ElementZ" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="83.0" layoutY="647.0" text="Version 1.0" textFill="WHITE" />
+                  <Label layoutX="90.0" layoutY="691.0" text="Version 1.0" textFill="WHITE" />
                </children></AnchorPane>
         </items>
       </SplitPane>
