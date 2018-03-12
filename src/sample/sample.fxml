@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -33,6 +35,22 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="12.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../signature-mail.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="45.0" layoutY="565.0" text="Alexandre CLAVEAU" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="77.0" layoutY="602.0" text="ElementZ" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="647.0" text="Version 1.0" textFill="WHITE" />
                </children></AnchorPane>
         </items>
       </SplitPane>
