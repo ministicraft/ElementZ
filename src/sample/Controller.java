@@ -27,8 +27,17 @@ public class Controller{
         System.out.println("OK Start");
         loadImage();
         EZJeu = new ElementZ_Model();
+        affectBoules();
         scoreGame.setText("0");
     }
 
+    private void affectBoules(){
+        int k = 0;
+        for (int i=0; i<8; i++){
+            for (int j=0; j<8; j++){
+
+            }
+        }
+    }
 
 }
