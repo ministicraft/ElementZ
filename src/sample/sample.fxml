@@ -19,11 +19,11 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <SplitPane dividerPositions="0.744988864142539" prefHeight="800.0" prefWidth="1100.0">
+      <SplitPane dividerPositions="0.744988864142539" prefHeight="720.0" prefWidth="940.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="776.0" style="-fx-background-color: black;">
                <children>
-                  <GridPane fx:id="gridPaneBoule" layoutX="33.0" layoutY="24.0" prefHeight="750.0" prefWidth="750.0">
+                  <GridPane fx:id="gridPaneBoule" alignment="CENTER" layoutX="33.0" layoutY="24.0" prefHeight="750.0" prefWidth="750.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,33 +50,33 @@
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="222.0" style="-fx-background-color: black;">
                <children>
-                  <Button fx:id="startBouton" layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#jButtonStart" prefHeight="39.0" prefWidth="191.0" text="Start" />
-                  <Label layoutX="109.0" layoutY="98.0" text="Score" textFill="WHITE">
+                  <Button fx:id="startBouton" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#jButtonStart" prefHeight="39.0" prefWidth="191.0" text="Start" />
+                  <Label layoutX="93.0" layoutY="99.0" text="Score" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="scoreGame" layoutX="132.0" layoutY="181.0" text="0" textFill="WHITE">
+                  <Label fx:id="scoreGame" layoutX="116.0" layoutY="182.0" text="0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="43.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="28.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../signature-mail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="72.0" layoutY="556.0" text="Alexandre CLAVEAU" textFill="WHITE">
+                  <Label layoutX="56.0" layoutY="465.0" text="Alexandre CLAVEAU" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="108.0" layoutY="595.0" text="ElementZ" textFill="WHITE">
+                  <Label layoutX="93.0" layoutY="511.0" text="ElementZ" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="110.0" layoutY="688.0" text="Version 1.0" textFill="WHITE" />
+                  <Label layoutX="95.0" layoutY="671.0" text="Version 1.0" textFill="WHITE" />
                </children></AnchorPane>
         </items>
       </SplitPane>
