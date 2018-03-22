@@ -14,20 +14,18 @@ public class Controller{
     public GridPane gridPaneBoule;
 
     private ElementZ_Model EZJeu;
+    private Image[] imageBoules = new Image[8];
+
+    private void loadImage(){
+        for (int i=0; i<7; i++){
+            imageBoules[i]= new Image("/boules_isen/boule_"+ i +".jpg");
+        }
+    }
 
     private void initComponents (){
-        int k = 0;
         for (int i=0; i<8; i++){
             for (int j=0; j<8; j++){
-                if (k<=6){
-                    Image image = new Image("/boules_isen/boule_"+ k +".jpg");
-                    gridPaneBoule.add(new ImageView(image),i,j);
-                    k++;
-                }else{
-                    k=0;
-                    Image image = new Image("/boules_isen/boule_"+ k +".jpg");
-                    gridPaneBoule.add(new ImageView(image),i,j);
-                }
+                gridPaneBoule.add(new ImageView(imageBoules[EZJeu.getXY(i,j)]),i,j);
             }
         }
     }
@@ -35,6 +33,7 @@ public class Controller{
     @FXML
     private void jButtonStart() {
         System.out.println("OK Start");
+        loadImage();
         EZJeu = new ElementZ_Model();
         initComponents();
         scoreGame.setText("0");
