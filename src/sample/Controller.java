@@ -25,6 +25,9 @@ public class Controller{
     @FXML
     private void jButtonStart(){
         System.out.println("OK Start");
+        loadImage();
+        EZJeu = new ElementZ_Model();
+        scoreGame.setText("0");
     }
 
 
