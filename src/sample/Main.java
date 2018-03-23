@@ -9,14 +9,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage estrade) throws Exception{
-        estrade.setTitle("ElementZ");
+    public void start(Stage stage) throws Exception{
+        stage.setTitle("ElementZ");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("sample.fxml"));
-        Pane panneau = (Pane) loader.load();
+        Pane panneau = loader.load();
         Scene scene = new Scene(panneau);
-        estrade.setScene(scene);
-        estrade.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

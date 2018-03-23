@@ -1,17 +1,13 @@
 package sample;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
-import java.awt.*;
-import java.awt.event.MouseEvent;
 
 public class Controller{
 
@@ -76,7 +72,16 @@ public class Controller{
         affectBalls();
         scoreGame.setText("0");
     }
-
+    //--------------------------------------------------------------------------
+    // Ici je viens avec cette méthode selectionner ma boule
+    //--------------------------------------------------------------------------
+    @FXML
+    private void gridPaneClick(MouseEvent e) {
+        Node source = (Node)e.getTarget();
+        Integer colIndex = GridPane.getColumnIndex(source);
+        Integer rowIndex = GridPane.getRowIndex(source);
+        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
+    }
     //private void dragAndDrop (){
     //    gridPaneBoule.setOnDragDetected(new EventHandler<DragEvent>() {
 
