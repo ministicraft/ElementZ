@@ -86,10 +86,11 @@ public class Controller{
             gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedX,selectedY)]),selectedX,selectedY);
 
         }else {
-            EZJeu.permut(selectedX,selectedY,colIndex.intValue(),rowIndex.intValue());
+            EZJeu.play(selectedX,selectedY,colIndex.intValue(),rowIndex.intValue());
             selectedX = -1;
             selectedY = -1;
             affectBalls();
+
         }
 
         System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
