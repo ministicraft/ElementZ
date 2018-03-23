@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import java.net.URI;
 import java.nio.file.Paths;
 
-public class Controller{
+public class Controller {
 
     public Label scoreGame;
     public Button startBouton;
@@ -30,21 +30,21 @@ public class Controller{
     // Je viens dans cette méthode, charger mes images afin de puvoir les
     // utiliser plus tard.
     //--------------------------------------------------------------------------
-    private void loadImageSimple(){
-        for (int i=1; i<7; i++){
-            imageBoules[i]= new Image(s+"/boule_"+ i +".jpg");
+    private void loadImageSimple() {
+        for (int i = 1; i < 7; i++) {
+            imageBoules[i] = new Image(s + "/boule_" + i + ".jpg");
         }
     }
 
-    private void loadImageHover(){
-        for (int i=1; i<7; i++){
-            imageBoulesHover[i]= new Image(s+"/boule_o_"+ i +".jpg");
+    private void loadImageHover() {
+        for (int i = 1; i < 7; i++) {
+            imageBoulesHover[i] = new Image(s + "/boule_o_" + i + ".jpg");
         }
     }
 
-    private void loadImageSelected(){
-        for (int i=1; i<7; i++){
-            imageBoulesSelected[i]= new Image(s+"/boule_s_"+ i +".jpg");
+    private void loadImageSelected() {
+        for (int i = 1; i < 7; i++) {
+            imageBoulesSelected[i] = new Image(s + "/boule_s_" + i + ".jpg");
         }
     }
 
@@ -52,20 +52,18 @@ public class Controller{
     // Cette méthode me permet quand à elle de venir affecter les boules en
     // fontion de la matrice de jeu.
     //--------------------------------------------------------------------------
-    private void affectBalls (){
-        for (int i=0; i<8; i++){
-            for (int j=0; j<8; j++){
-                int id = EZJeu.getXY(i,j);
+    private void affectBalls() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int id = EZJeu.getXY(i, j);
                 ImageView imageView = new ImageView(imageBoules[id]);
-                int finalI = i;
-                int finalJ = j;
                 imageView.setOnMouseEntered(event -> {
                     imageView.setImage(imageBoulesHover[id]);
                 });
                 imageView.setOnMouseExited(event -> {
                     imageView.setImage(imageBoules[id]);
                 });
-                gridPaneBoule.add(imageView,j,i);
+                gridPaneBoule.add(imageView, j, i);
             }
         }
     }
@@ -82,17 +80,7 @@ public class Controller{
         affectBalls();
         scoreGame.setText(String.valueOf(EZJeu.getScore()));
     }
-    @FXML
-    private void hoverIn(MouseEvent e){
-        System.out.println(e.toString());
-        try{
-            Node source = (Node) e.getTarget();
-            Integer colIndex = GridPane.getColumnIndex(source);
-            Integer rowIndex = GridPane.getRowIndex(source);
-            gridPaneBoule.add(new ImageView(imageBoulesHover[EZJeu.getXY(colIndex, rowIndex)]), colIndex, rowIndex);
-        }
-        catch (Exception err){}
-    }
+
     //--------------------------------------------------------------------------
     // Ici je viens avec cette méthode selectionner ma boule
     //--------------------------------------------------------------------------
@@ -103,19 +91,19 @@ public class Controller{
             Integer colIndex = GridPane.getColumnIndex(source);
             Integer rowIndex = GridPane.getRowIndex(source);
             if (selectedX == -1) {
-                selectedX = colIndex.intValue();
-                selectedY = rowIndex.intValue();
+                selectedX = colIndex;
+                selectedY = rowIndex;
                 gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY, selectedX)]), selectedX, selectedY);
 
             } else {
-                EZJeu.play(selectedY, selectedX, rowIndex.intValue(), colIndex.intValue());
+                EZJeu.play(selectedY, selectedX, rowIndex, colIndex);
                 selectedX = -1;
                 selectedY = -1;
                 affectBalls();
                 scoreGame.setText(String.valueOf(EZJeu.getScore()));
             }
-        }catch (Exception err){
-            System.out.printf("Pas une image !!!!!!!!\n");
+        } catch (Exception err) {
+            System.out.print("Pas une image !!!!!!!!\n");
         }
     }
 }
