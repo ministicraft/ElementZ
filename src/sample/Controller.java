@@ -10,6 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import sun.rmi.runtime.Log;
 
+import java.net.URI;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Controller{
 
     public Label scoreGame;
@@ -22,6 +27,7 @@ public class Controller{
     private Image[] imageBoules = new Image[8];
     private Image[] imageBoulesHover = new Image[8];
     private Image[] imageBoulesSelected = new Image[8];
+    private URI s = Paths.get("res/img/").toAbsolutePath().toUri();
 
     //--------------------------------------------------------------------------
     // Je viens dans cette méthode, charger mes images afin de puvoir les
@@ -29,19 +35,19 @@ public class Controller{
     //--------------------------------------------------------------------------
     private void loadImageSimple(){
         for (int i=1; i<7; i++){
-            imageBoules[i]= new Image("/boules_isen/boule_"+ i +".jpg");
+            imageBoules[i]= new Image(s+"/boule_"+ i +".jpg");
         }
     }
 
     private void loadImageHover(){
         for (int i=1; i<7; i++){
-            imageBoulesHover[i]= new Image("/boules_isen/boule_o_"+ i +".jpg");
+            imageBoulesHover[i]= new Image(s+"/boule_o_"+ i +".jpg");
         }
     }
 
     private void loadImageSelected(){
         for (int i=1; i<7; i++){
-            imageBoulesSelected[i]= new Image("/boules_isen/boule_s_"+ i +".jpg");
+            imageBoulesSelected[i]= new Image(s+"/boule_s_"+ i +".jpg");
         }
     }
 
@@ -52,7 +58,17 @@ public class Controller{
     private void affectBalls (){
         for (int i=0; i<8; i++){
             for (int j=0; j<8; j++){
-                gridPaneBoule.add(new ImageView(imageBoules[EZJeu.getXY(i,j)]),j,i);
+                int id = EZJeu.getXY(i,j);
+                ImageView imageView = new ImageView(imageBoules[id]);
+                int finalI = i;
+                int finalJ = j;
+                imageView.setOnMouseEntered(event -> {
+                    imageView.setImage(imageBoulesHover[id]);
+                });
+                imageView.setOnMouseExited(event -> {
+                    imageView.setImage(imageBoules[id]);
+                });
+                gridPaneBoule.add(imageView,j,i);
             }
         }
     }
@@ -62,13 +78,23 @@ public class Controller{
     //--------------------------------------------------------------------------
     @FXML
     private void jButtonStart() {
-        System.out.println("OK Start");
         loadImageSimple();
         loadImageHover();
         loadImageSelected();
         EZJeu = new ElementZ_Model();
         affectBalls();
         scoreGame.setText(String.valueOf(EZJeu.getScore()));
+    }
+    @FXML
+    private void hoverIn(MouseEvent e){
+        System.out.println(e.toString());
+        try{
+            Node source = (Node) e.getTarget();
+            Integer colIndex = GridPane.getColumnIndex(source);
+            Integer rowIndex = GridPane.getRowIndex(source);
+            gridPaneBoule.add(new ImageView(imageBoulesHover[EZJeu.getXY(colIndex, rowIndex)]), colIndex, rowIndex);
+        }
+        catch (Exception err){}
     }
     //--------------------------------------------------------------------------
     // Ici je viens avec cette méthode selectionner ma boule
@@ -85,15 +111,12 @@ public class Controller{
                 gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY, selectedX)]), selectedX, selectedY);
 
             } else {
-                System.out.println(EZJeu.toString());
                 EZJeu.play(selectedY, selectedX, rowIndex.intValue(), colIndex.intValue());
                 selectedX = -1;
                 selectedY = -1;
                 affectBalls();
                 scoreGame.setText(String.valueOf(EZJeu.getScore()));
             }
-
-            System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
         }catch (Exception err){
             System.out.printf("Pas une image !!!!!!!!\n");
         }
