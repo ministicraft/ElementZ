@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import sun.rmi.runtime.Log;
 
 public class Controller{
 
@@ -74,23 +75,27 @@ public class Controller{
     //--------------------------------------------------------------------------
     @FXML
     private void gridPaneClick(MouseEvent e) {
-        Node source = (Node)e.getTarget();
-        Integer colIndex = GridPane.getColumnIndex(source);
-        Integer rowIndex = GridPane.getRowIndex(source);
-        if (selectedX == -1){
-            selectedX = colIndex.intValue();
-            selectedY = rowIndex.intValue();
-            gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY,selectedX)]),selectedX,selectedY);
+        try {
+            Node source = (Node) e.getTarget();
+            Integer colIndex = GridPane.getColumnIndex(source);
+            Integer rowIndex = GridPane.getRowIndex(source);
+            if (selectedX == -1) {
+                selectedX = colIndex.intValue();
+                selectedY = rowIndex.intValue();
+                gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY, selectedX)]), selectedX, selectedY);
 
-        }else {
-            System.out.println(EZJeu.toString());
-            EZJeu.play(selectedY,selectedX,rowIndex.intValue(),colIndex.intValue());
-            selectedX = -1;
-            selectedY = -1;
-            affectBalls();
-            scoreGame.setText(String.valueOf(EZJeu.getScore()));
+            } else {
+                System.out.println(EZJeu.toString());
+                EZJeu.play(selectedY, selectedX, rowIndex.intValue(), colIndex.intValue());
+                selectedX = -1;
+                selectedY = -1;
+                affectBalls();
+                scoreGame.setText(String.valueOf(EZJeu.getScore()));
+            }
+
+            System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
+        }catch (Exception err){
+            System.out.printf("Pas une image !!!!!!!!\n");
         }
-
-        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
     }
 }
