@@ -83,6 +83,8 @@ public class Controller{
         if (selectedX == -1){
             selectedX = colIndex.intValue();
             selectedY = rowIndex.intValue();
+            gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedX,selectedY)]),selectedX,selectedY);
+
         }else {
             EZJeu.permut(selectedX,selectedY,colIndex.intValue(),rowIndex.intValue());
             selectedX = -1;
