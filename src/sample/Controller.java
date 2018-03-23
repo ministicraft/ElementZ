@@ -51,7 +51,7 @@ public class Controller{
     private void affectBalls (){
         for (int i=0; i<8; i++){
             for (int j=0; j<8; j++){
-                gridPaneBoule.add(new ImageView(imageBoules[EZJeu.getXY(i,j)]),i,j);
+                gridPaneBoule.add(new ImageView(imageBoules[EZJeu.getXY(i,j)]),j,i);
             }
         }
     }
@@ -80,14 +80,15 @@ public class Controller{
         if (selectedX == -1){
             selectedX = colIndex.intValue();
             selectedY = rowIndex.intValue();
-            gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedX,selectedY)]),selectedX,selectedY);
+            gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY,selectedX)]),selectedX,selectedY);
 
         }else {
-            EZJeu.play(selectedX,selectedY,colIndex.intValue(),rowIndex.intValue());
+            System.out.println(EZJeu.toString());
+            EZJeu.play(selectedY,selectedX,rowIndex.intValue(),colIndex.intValue());
             selectedX = -1;
             selectedY = -1;
             affectBalls();
-
+            scoreGame.setText(String.valueOf(EZJeu.getScore()));
         }
 
         System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
