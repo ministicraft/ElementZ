@@ -27,7 +27,7 @@ public class Controller {
     private URI s = Paths.get("res/img/").toAbsolutePath().toUri();
 
     //--------------------------------------------------------------------------
-    // Je viens dans cette méthode, charger mes images afin de puvoir les
+    // Je viens dans cette méthode, charger mes images afin de pouvoir les
     // utiliser plus tard.
     //--------------------------------------------------------------------------
     private void loadImageSimple() {

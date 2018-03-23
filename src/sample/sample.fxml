@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <SplitPane dividerPositions="0.7377398720682303" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="940.0">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="776.0" style="-fx-background-color: black;">
+             <AnchorPane id="elementz" minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="776.0">
                <children>
                   <GridPane fx:id="gridPaneBoule" alignment="CENTER" layoutX="23.0" layoutY="17.0" onMousePressed="#gridPaneClick" prefHeight="684.0" prefWidth="650.0">
                      <columnConstraints>
@@ -41,15 +35,16 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="222.0" style="-fx-background-color: black;">
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="222.0">
                <children>
                   <Button fx:id="startBouton" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#jButtonStart" prefHeight="39.0" prefWidth="191.0" text="Start" />
-                  <Label layoutX="93.0" layoutY="99.0" text="Score" textFill="WHITE">
+                   <Label layoutX="93.0" layoutY="99.0" style="-fx-text-fill: black;" text="Score" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="scoreGame" layoutX="116.0" layoutY="182.0" text="0" textFill="WHITE">
+                   <Label fx:id="scoreGame" layoutX="116.0" layoutY="182.0" style="-fx-text-fill: black;" text="0"
+                          textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -59,12 +54,13 @@
                         <Image url="@../signature-mail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="56.0" layoutY="465.0" text="Arnaud PREMEL-CABIC" textFill="WHITE">
+                   <Label layoutX="56.0" layoutY="465.0" style="-fx-text-fill: black;" text="Arnaud PREMEL-CABIC"
+                          textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="93.0" layoutY="511.0" text="ElementZ" textFill="WHITE">
+                   <Label layoutX="93.0" layoutY="511.0" style="-fx-text-fill: grey;" text="ElementZ" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

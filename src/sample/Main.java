@@ -15,6 +15,7 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("sample.fxml"));
         Pane panneau = loader.load();
         Scene scene = new Scene(panneau);
+        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
