@@ -59,7 +59,7 @@
                         <Image url="@../signature-mail.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="56.0" layoutY="465.0" text="Alexandre CLAVEAU" textFill="WHITE">
+                  <Label layoutX="56.0" layoutY="465.0" text="Arnaud PREMEL-CABIC" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
