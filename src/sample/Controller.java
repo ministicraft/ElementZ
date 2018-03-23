@@ -16,11 +16,8 @@ public class Controller{
     public GridPane gridPaneBoule;
 
     private ElementZ_Model EZJeu;
-    private boolean selected = false;
     private int selectedX = -1;
     private int selectedY = -1;
-    private int selectedXP;
-    private int selectedYP;
     private Image[] imageBoules = new Image[8];
     private Image[] imageBoulesHover = new Image[8];
     private Image[] imageBoulesSelected = new Image[8];
