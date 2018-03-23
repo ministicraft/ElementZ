@@ -17,8 +17,8 @@ public class Controller{
 
     private ElementZ_Model EZJeu;
     private boolean selected = false;
-    private int selectedX;
-    private int selectedY;
+    private int selectedX = -1;
+    private int selectedY = -1;
     private int selectedXP;
     private int selectedYP;
     private Image[] imageBoules = new Image[8];
@@ -70,7 +70,7 @@ public class Controller{
         loadImageSelected();
         EZJeu = new ElementZ_Model();
         affectBalls();
-        scoreGame.setText("0");
+        scoreGame.setText(String.valueOf(EZJeu.getScore()));
     }
     //--------------------------------------------------------------------------
     // Ici je viens avec cette méthode selectionner ma boule
@@ -80,6 +80,16 @@ public class Controller{
         Node source = (Node)e.getTarget();
         Integer colIndex = GridPane.getColumnIndex(source);
         Integer rowIndex = GridPane.getRowIndex(source);
+        if (selectedX == -1){
+            selectedX = colIndex.intValue();
+            selectedY = rowIndex.intValue();
+        }else {
+            EZJeu.permut(selectedX,selectedY,colIndex.intValue(),rowIndex.intValue());
+            selectedX = -1;
+            selectedY = -1;
+            affectBalls();
+        }
+
         System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
     }
     //private void dragAndDrop (){
