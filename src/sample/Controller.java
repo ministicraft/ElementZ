@@ -48,6 +48,17 @@ public class Controller {
         }
     }
 
+    private ImageView createBalls(int id) {
+        ImageView imageView = new ImageView(imageBoules[id]);
+        imageView.setOnMouseEntered(event -> {
+            imageView.setImage(imageBoulesHover[id]);
+        });
+        imageView.setOnMouseExited(event -> {
+            imageView.setImage(imageBoules[id]);
+        });
+        return imageView;
+    }
+
     //--------------------------------------------------------------------------
     // Cette méthode me permet quand à elle de venir affecter les boules en
     // fontion de la matrice de jeu.
@@ -56,16 +67,18 @@ public class Controller {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 int id = EZJeu.getXY(i, j);
-                ImageView imageView = new ImageView(imageBoules[id]);
-                imageView.setOnMouseEntered(event -> {
-                    imageView.setImage(imageBoulesHover[id]);
-                });
-                imageView.setOnMouseExited(event -> {
-                    imageView.setImage(imageBoules[id]);
-                });
-                gridPaneBoule.add(imageView, j, i);
+                gridPaneBoule.add(createBalls(id), j, i);
             }
         }
+    }
+
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
     }
 
     //--------------------------------------------------------------------------
