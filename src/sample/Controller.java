@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -24,7 +23,8 @@ public class Controller {
     private Image[] imageBoules = new Image[8];
     private Image[] imageBoulesHover = new Image[8];
     private Image[] imageBoulesSelected = new Image[8];
-    private URI s = Paths.get("res/img/boules").toAbsolutePath().toUri();
+    private URI s = Paths.get("src/res/img/boules").toAbsolutePath().toUri();
+    private int TOLERANCE_THRESHOLD = 0x1A;
 
     //--------------------------------------------------------------------------
     // Je viens dans cette méthode, charger mes images afin de pouvoir les
@@ -32,19 +32,25 @@ public class Controller {
     //--------------------------------------------------------------------------
     private void loadImageSimple() {
         for (int i = 1; i < 7; i++) {
-            imageBoules[i] = new Image(s + "/boule_" + i + ".jpg");
+            Image image = new Image(s + "/boule_" + i + ".jpg");
+            image = makeTransparent(image);
+            imageBoules[i] = image;
         }
     }
 
     private void loadImageHover() {
         for (int i = 1; i < 7; i++) {
-            imageBoulesHover[i] = new Image(s + "/boule_o_" + i + ".jpg");
+            Image image = new Image(s + "/boule_o_" + i + ".jpg");
+            image = makeTransparent(image);
+            imageBoulesHover[i] = image;
         }
     }
 
     private void loadImageSelected() {
         for (int i = 1; i < 7; i++) {
-            imageBoulesSelected[i] = new Image(s + "/boule_s_" + i + ".jpg");
+            Image image = new Image(s + "/boule_s_" + i + ".jpg");
+            image = makeTransparent(image);
+            imageBoulesSelected[i] = image;
         }
     }
 
@@ -57,6 +63,31 @@ public class Controller {
             imageView.setImage(imageBoules[id]);
         });
         return imageView;
+    }
+
+    private Image makeTransparent(Image inputImage) {
+        int W = (int) inputImage.getWidth();
+        int H = (int) inputImage.getHeight();
+        WritableImage outputImage = new WritableImage(W, H);
+        PixelReader reader = inputImage.getPixelReader();
+        PixelWriter writer = outputImage.getPixelWriter();
+        for (int y = 0; y < H; y++) {
+            for (int x = 0; x < W; x++) {
+                int argb = reader.getArgb(x, y);
+
+                int r = (argb >> 16) & 0xFF;
+                int g = (argb >> 8) & 0xFF;
+                int b = argb & 0xFF;
+
+                if (r <= TOLERANCE_THRESHOLD && g <= TOLERANCE_THRESHOLD && b <= TOLERANCE_THRESHOLD) {
+                    argb &= 0x00000000;
+                }
+
+                writer.setArgb(x, y, argb);
+            }
+        }
+
+        return outputImage;
     }
 
     //--------------------------------------------------------------------------

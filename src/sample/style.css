@@ -1,3 +1,8 @@
 #elementz {
-    -fx-background-color: black;
+    -fx-background-image: url("../res/img/background-image.jpg");
+    -fx-background-color: grey;
+}
+
+#logo {
+    -fx-image: url("../res/img/logo.jpg");
 }
