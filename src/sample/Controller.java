@@ -8,9 +8,6 @@ import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
-import java.net.URI;
-import java.nio.file.Paths;
-
 public class Controller {
 
     public Label scoreGame;
@@ -18,22 +15,26 @@ public class Controller {
     public GridPane gridPaneBoule;
 
     private ElementZ_Model EZJeu;
-    private int selectedX = -1;
-    private int selectedY = -1;
+    private final int TOLERANCE_THRESHOLD = 0x1A;
+    private int selectedCol = -1;
     private Image[] imageBoules = new Image[8];
     private Image[] imageBoulesHover = new Image[8];
     private Image[] imageBoulesSelected = new Image[8];
-    private URI s = Paths.get("src/res/img/boules").toAbsolutePath().toUri();
-    private int TOLERANCE_THRESHOLD = 0x1A;
+    private int selectedRow = -1;
+    private String s = "res/img/boules";
 
 
     //--------------------------------------------------------------------------
     // Constructeur du controller
     //--------------------------------------------------------------------------
     public Controller() {
-        loadImageSimple();
-        loadImageSelected();
-        loadImageHover();
+        try {
+            loadImageSimple();
+            loadImageSelected();
+            loadImageHover();
+        } catch (IllegalArgumentException e) {
+            System.err.print("Impossible de charger les images\n");
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -139,20 +140,20 @@ public class Controller {
             Node source = (Node) e.getTarget();
             Integer colIndex = GridPane.getColumnIndex(source);
             Integer rowIndex = GridPane.getRowIndex(source);
-            if (selectedX == -1) {
-                selectedX = colIndex;
-                selectedY = rowIndex;
-                gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedY, selectedX)]), selectedX, selectedY);
+            if (selectedCol == -1) {
+                selectedCol = colIndex;
+                selectedRow = rowIndex;
+                gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedRow, selectedCol)]), selectedCol, selectedRow);
 
             } else {
-                EZJeu.play(selectedY, selectedX, rowIndex, colIndex);
-                selectedX = -1;
-                selectedY = -1;
+                EZJeu.play(selectedRow, selectedCol, rowIndex, colIndex);
+                selectedCol = -1;
+                selectedRow = -1;
                 affectBalls();
                 scoreGame.setText(String.valueOf(EZJeu.getScore()));
             }
         } catch (Exception err) {
-            System.out.print("Pas une image !!!!!!!!\n");
+            //System.err.print("Pas une image !!!!!!!!\n");
         }
     }
 }
