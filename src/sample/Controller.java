@@ -24,7 +24,7 @@ public class Controller {
     private Image[] imageBoules = new Image[8];
     private Image[] imageBoulesHover = new Image[8];
     private Image[] imageBoulesSelected = new Image[8];
-    private URI s = Paths.get("res/img/").toAbsolutePath().toUri();
+    private URI s = Paths.get("res/img/boules").toAbsolutePath().toUri();
 
     //--------------------------------------------------------------------------
     // Je viens dans cette méthode, charger mes images afin de pouvoir les
