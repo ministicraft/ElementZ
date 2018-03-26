@@ -54,6 +54,11 @@ public class Controller {
         }
     }
 
+    //--------------------------------------------------------------------------
+    // J'utilise cette ùethode pour créer mes imagesView
+    // Et ajouter les listeners
+    //--------------------------------------------------------------------------
+
     private ImageView createBalls(int id) {
         ImageView imageView = new ImageView(imageBoules[id]);
         imageView.setOnMouseEntered(event -> {
@@ -64,6 +69,10 @@ public class Controller {
         });
         return imageView;
     }
+
+    //--------------------------------------------------------------------------
+    // Cette methode permet de changer le fond des images noirs en transparent
+    //--------------------------------------------------------------------------
 
     private Image makeTransparent(Image inputImage) {
         int W = (int) inputImage.getWidth();
@@ -101,15 +110,6 @@ public class Controller {
                 gridPaneBoule.add(createBalls(id), j, i);
             }
         }
-    }
-
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-        return null;
     }
 
     //--------------------------------------------------------------------------
