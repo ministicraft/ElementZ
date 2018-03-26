@@ -21,9 +21,9 @@ public class Controller {
     private int selectedRow = -1;
     private final String s = "res/img/boules";
     private final int TOLERANCE_THRESHOLD = 0x1A;
-    private Hashtable<Integer, Image> imageBoules;
-    private Hashtable<Integer, Image> imageBoulesHover;
-    private Hashtable<Integer, Image> imageBoulesSelected;
+    private Hashtable<Integer, Image> imageBoules = new Hashtable<>();
+    private Hashtable<Integer, Image> imageBoulesHover = new Hashtable<>();
+    private Hashtable<Integer, Image> imageBoulesSelected = new Hashtable<>();
 
 
     //--------------------------------------------------------------------------
@@ -31,46 +31,20 @@ public class Controller {
     //--------------------------------------------------------------------------
     public Controller() {
         try {
-            imageBoules = loadImageSimple();
-            imageBoulesHover = loadImageHover();
-            imageBoulesSelected = loadImageSelected();
+            for (int i = 1; i <= 6; i++) {
+                Image image = new Image(s + "/boule_" + i + ".jpg");
+                image = makeTransparent(image);
+                Image imageO = new Image(s + "/boule_o_" + i + ".jpg");
+                imageO = makeTransparent(imageO);
+                Image imageS = new Image(s + "/boule_s_" + i + ".jpg");
+                imageS = makeTransparent(imageS);
+                imageBoules.put(i, image);
+                imageBoulesHover.put(i, imageO);
+                imageBoulesSelected.put(i, imageS);
+            }
         } catch (IllegalArgumentException e) {
             System.err.print("Impossible de charger les images\n");
         }
-    }
-
-    //--------------------------------------------------------------------------
-    // Je viens dans cette méthode, charger mes images afin de pouvoir les
-    // utiliser plus tard.
-    //--------------------------------------------------------------------------
-    private Hashtable<Integer, Image> loadImageSimple() {
-        Hashtable<Integer, Image> table = new Hashtable<>();
-        for (int i = 0; i < 6; i++) {
-            Image image = new Image(s + "/boule_" + (i + 1) + ".jpg");
-            image = makeTransparent(image);
-            table.put(i + 1, image);
-        }
-        return table;
-    }
-
-    private Hashtable<Integer, Image> loadImageHover() {
-        Hashtable<Integer, Image> table = new Hashtable<>();
-        for (int i = 0; i < 6; i++) {
-            Image image = new Image(s + "/boule_o_" + (i + 1) + ".jpg");
-            image = makeTransparent(image);
-            table.put(i + 1, image);
-        }
-        return table;
-    }
-
-    private Hashtable<Integer, Image> loadImageSelected() {
-        Hashtable<Integer, Image> table = new Hashtable<>();
-        for (int i = 0; i < 6; i++) {
-            Image image = new Image(s + "/boule_s_" + (i + 1) + ".jpg");
-            image = makeTransparent(image);
-            table.put(i + 1, image);
-        }
-        return table;
     }
 
     //--------------------------------------------------------------------------
