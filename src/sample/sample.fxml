@@ -52,7 +52,7 @@
                   </Label>
                   <ImageView fitHeight="85.0" fitWidth="191.0" layoutX="28.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                         <Image url="@../../res/img/logo.jpg"/>
+                         <Image url="@logo.jpg"/>
                      </image>
                   </ImageView>
                    <Label layoutX="56.0" layoutY="465.0" style="-fx-text-fill: black;" text="Arnaud PREMEL-CABIC"
