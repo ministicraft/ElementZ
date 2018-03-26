@@ -19,7 +19,7 @@ public class Controller {
     private ElementZ_Model EZJeu;
     private int selectedCol = -1;
     private int selectedRow = -1;
-    private final String s = "res/img/boules";
+    private final String s = "res/img/boules/";
     private final int TOLERANCE_THRESHOLD = 0x1A;
     private Hashtable<Integer, Image> imageBoules = new Hashtable<>();
     private Hashtable<Integer, Image> imageBoulesHover = new Hashtable<>();
@@ -32,11 +32,11 @@ public class Controller {
     public Controller() {
         try {
             for (int i = 1; i <= 6; i++) {
-                Image image = new Image(s + "/boule_" + i + ".jpg");
+                Image image = new Image(s + "boule_" + i + ".jpg");
                 image = makeTransparent(image);
-                Image imageO = new Image(s + "/boule_o_" + i + ".jpg");
+                Image imageO = new Image(s + "boule_o_" + i + ".jpg");
                 imageO = makeTransparent(imageO);
-                Image imageS = new Image(s + "/boule_s_" + i + ".jpg");
+                Image imageS = new Image(s + "boule_s_" + i + ".jpg");
                 imageS = makeTransparent(imageS);
                 imageBoules.put(i, image);
                 imageBoulesHover.put(i, imageO);
@@ -44,6 +44,7 @@ public class Controller {
             }
         } catch (IllegalArgumentException e) {
             System.err.print("Impossible de charger les images\n");
+            System.exit(-1);
         }
     }
 
@@ -122,7 +123,6 @@ public class Controller {
                 selectedCol = colIndex;
                 selectedRow = rowIndex;
                 gridPaneBoule.add(new ImageView(imageBoulesSelected.get(EZJeu.getXY(selectedRow, selectedCol))), selectedCol, selectedRow);
-
             } else {
                 EZJeu.play(selectedRow, selectedCol, rowIndex, colIndex);
                 selectedCol = -1;
