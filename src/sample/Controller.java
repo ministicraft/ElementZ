@@ -19,7 +19,7 @@ public class Controller {
     private ElementZ_Model EZJeu;
     private int selectedCol = -1;
     private int selectedRow = -1;
-    private final String s = "res/img/boules/";
+    private final String s = "img/boules/";
     private final int TOLERANCE_THRESHOLD = 0x1A;
     private Hashtable<Integer, Image> imageBoules = new Hashtable<>();
     private Hashtable<Integer, Image> imageBoulesHover = new Hashtable<>();
