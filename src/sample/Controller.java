@@ -8,6 +8,8 @@ import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import java.util.Hashtable;
+
 public class Controller {
 
     public Label scoreGame;
@@ -15,13 +17,13 @@ public class Controller {
     public GridPane gridPaneBoule;
 
     private ElementZ_Model EZJeu;
-    private final int TOLERANCE_THRESHOLD = 0x1A;
     private int selectedCol = -1;
-    private Image[] imageBoules = new Image[8];
-    private Image[] imageBoulesHover = new Image[8];
-    private Image[] imageBoulesSelected = new Image[8];
     private int selectedRow = -1;
-    private String s = "res/img/boules";
+    private final String s = "res/img/boules";
+    private final int TOLERANCE_THRESHOLD = 0x1A;
+    private Hashtable<Integer, Image> imageBoules;
+    private Hashtable<Integer, Image> imageBoulesHover;
+    private Hashtable<Integer, Image> imageBoulesSelected;
 
 
     //--------------------------------------------------------------------------
@@ -29,9 +31,9 @@ public class Controller {
     //--------------------------------------------------------------------------
     public Controller() {
         try {
-            loadImageSimple();
-            loadImageSelected();
-            loadImageHover();
+            imageBoules = loadImageSimple();
+            imageBoulesHover = loadImageHover();
+            imageBoulesSelected = loadImageSelected();
         } catch (IllegalArgumentException e) {
             System.err.print("Impossible de charger les images\n");
         }
@@ -41,28 +43,34 @@ public class Controller {
     // Je viens dans cette méthode, charger mes images afin de pouvoir les
     // utiliser plus tard.
     //--------------------------------------------------------------------------
-    private void loadImageSimple() {
-        for (int i = 1; i < 7; i++) {
-            Image image = new Image(s + "/boule_" + i + ".jpg");
+    private Hashtable<Integer, Image> loadImageSimple() {
+        Hashtable<Integer, Image> table = new Hashtable<>();
+        for (int i = 0; i < 6; i++) {
+            Image image = new Image(s + "/boule_" + (i + 1) + ".jpg");
             image = makeTransparent(image);
-            imageBoules[i] = image;
+            table.put(i + 1, image);
         }
+        return table;
     }
 
-    private void loadImageHover() {
-        for (int i = 1; i < 7; i++) {
-            Image image = new Image(s + "/boule_o_" + i + ".jpg");
+    private Hashtable<Integer, Image> loadImageHover() {
+        Hashtable<Integer, Image> table = new Hashtable<>();
+        for (int i = 0; i < 6; i++) {
+            Image image = new Image(s + "/boule_o_" + (i + 1) + ".jpg");
             image = makeTransparent(image);
-            imageBoulesHover[i] = image;
+            table.put(i + 1, image);
         }
+        return table;
     }
 
-    private void loadImageSelected() {
-        for (int i = 1; i < 7; i++) {
-            Image image = new Image(s + "/boule_s_" + i + ".jpg");
+    private Hashtable<Integer, Image> loadImageSelected() {
+        Hashtable<Integer, Image> table = new Hashtable<>();
+        for (int i = 0; i < 6; i++) {
+            Image image = new Image(s + "/boule_s_" + (i + 1) + ".jpg");
             image = makeTransparent(image);
-            imageBoulesSelected[i] = image;
+            table.put(i + 1, image);
         }
+        return table;
     }
 
     //--------------------------------------------------------------------------
@@ -70,13 +78,9 @@ public class Controller {
     // Et ajouter les listeners
     //--------------------------------------------------------------------------
     private ImageView createBalls(int id) {
-        ImageView imageView = new ImageView(imageBoules[id]);
-        imageView.setOnMouseEntered(event -> {
-            imageView.setImage(imageBoulesHover[id]);
-        });
-        imageView.setOnMouseExited(event -> {
-            imageView.setImage(imageBoules[id]);
-        });
+        ImageView imageView = new ImageView(imageBoules.get(id));
+        imageView.setOnMouseEntered(event -> imageView.setImage(imageBoulesHover.get(id)));
+        imageView.setOnMouseExited(event -> imageView.setImage(imageBoules.get(id)));
         return imageView;
     }
 
@@ -143,7 +147,7 @@ public class Controller {
             if (selectedCol == -1) {
                 selectedCol = colIndex;
                 selectedRow = rowIndex;
-                gridPaneBoule.add(new ImageView(imageBoulesSelected[EZJeu.getXY(selectedRow, selectedCol)]), selectedCol, selectedRow);
+                gridPaneBoule.add(new ImageView(imageBoulesSelected.get(EZJeu.getXY(selectedRow, selectedCol))), selectedCol, selectedRow);
 
             } else {
                 EZJeu.play(selectedRow, selectedCol, rowIndex, colIndex);
