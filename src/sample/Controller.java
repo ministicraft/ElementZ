@@ -26,6 +26,16 @@ public class Controller {
     private URI s = Paths.get("src/res/img/boules").toAbsolutePath().toUri();
     private int TOLERANCE_THRESHOLD = 0x1A;
 
+
+    //--------------------------------------------------------------------------
+    // Constructeur du controller
+    //--------------------------------------------------------------------------
+    public Controller() {
+        loadImageSimple();
+        loadImageSelected();
+        loadImageHover();
+    }
+
     //--------------------------------------------------------------------------
     // Je viens dans cette méthode, charger mes images afin de pouvoir les
     // utiliser plus tard.
@@ -55,10 +65,9 @@ public class Controller {
     }
 
     //--------------------------------------------------------------------------
-    // J'utilise cette ùethode pour créer mes imagesView
+    // J'utilise cette methode pour créer mes imagesView
     // Et ajouter les listeners
     //--------------------------------------------------------------------------
-
     private ImageView createBalls(int id) {
         ImageView imageView = new ImageView(imageBoules[id]);
         imageView.setOnMouseEntered(event -> {
@@ -73,7 +82,6 @@ public class Controller {
     //--------------------------------------------------------------------------
     // Cette methode permet de changer le fond des images noirs en transparent
     //--------------------------------------------------------------------------
-
     private Image makeTransparent(Image inputImage) {
         int W = (int) inputImage.getWidth();
         int H = (int) inputImage.getHeight();
@@ -117,9 +125,6 @@ public class Controller {
     //--------------------------------------------------------------------------
     @FXML
     private void jButtonStart() {
-        loadImageSimple();
-        loadImageHover();
-        loadImageSelected();
         EZJeu = new ElementZ_Model();
         affectBalls();
         scoreGame.setText(String.valueOf(EZJeu.getScore()));
