@@ -3,6 +3,21 @@
     -fx-background-color: grey;
 }
 
-#logo {
-    -fx-image: url("/img/logo.jpg");
+
+#banner {
+    -fx-background-image: url("/img/banner.png");
 }
+/*
+.top {
+
+    -fx-border-color: red;
+    -fx-border-width: 1 1 0 1;
+    -fx-border-style: dotted;
+}
+
+.bottom {
+
+    -fx-border-color: red;
+    -fx-border-width: 0 1 1 1;
+    -fx-border-style: dotted;
+}*/
