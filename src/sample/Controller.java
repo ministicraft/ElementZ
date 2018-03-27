@@ -112,6 +112,10 @@ public class Controller {
         }
     }
 
+    //--------------------------------------------------------------------------
+    // Cette méthode me permet quand à elle de venir rafraichir les boules en
+    // fontion de la matrice de jeu.
+    //--------------------------------------------------------------------------
     private void refreshBalls(){
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -123,12 +127,17 @@ public class Controller {
         }
     }
 
+
+    //--------------------------------------------------------------------------
+    // Cette méthode me permet de récupérer le node d'un gridpane
+    // en fonction de ces coordonnées
+    //--------------------------------------------------------------------------
     public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
         Node result = null;
         ObservableList<Node> childrens = gridPane.getChildren();
 
         for (Node node : childrens) {
-            if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
                 result = node;
                 break;
             }
